@@ -1,0 +1,416 @@
+2020-07-02 14:48:35.700  INFO 9760 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 9760 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:48:35.711  INFO 9760 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:48:36.227  INFO 9760 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:48:36.242  INFO 9760 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:48:36.771  INFO 9760 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:48:36.785  INFO 9760 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:48:36.785  INFO 9760 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:48:36.786  INFO 9760 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:48:36.884  INFO 9760 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:48:36.884  INFO 9760 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 1143 ms
+2020-07-02 14:48:37.028  INFO 9760 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:48:37.225  INFO 9760 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:48:37.236  INFO 9760 --- [           main] o.m.d.cluster                            : Cluster description not yet available. Waiting for 30000 ms before timing out
+2020-07-02 14:48:47.059  INFO 9760 --- [8.169.129:27017] o.m.d.cluster                            : Exception in monitor thread while connecting to server 192.168.169.129:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) [mongodb-driver-core-4.0.3.jar:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_91]
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_91]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_91]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_91]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_91]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_91]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:63) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.0.3.jar:?]
+	... 3 more
+
+2020-07-02 14:49:07.245 ERROR 9760 --- [           main] c.c.c.CagMongo                           : cag-mongo connecting failure
+
+org.springframework.dao.DataAccessResourceFailureException: Timed out after 30000 ms while waiting to connect. Client view of cluster state is {type=UNKNOWN, servers=[{address=192.168.169.129:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.SocketTimeoutException: connect timed out}}]; nested exception is com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting to connect. Client view of cluster state is {type=UNKNOWN, servers=[{address=192.168.169.129:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.SocketTimeoutException: connect timed out}}]
+	at org.springframework.data.mongodb.core.MongoExceptionTranslator.translateExceptionIfPossible(MongoExceptionTranslator.java:88) ~[spring-data-mongodb-3.0.0.RELEASE.jar:3.0.0.RELEASE]
+	at org.springframework.data.mongodb.core.MongoTemplate.potentiallyConvertRuntimeException(MongoTemplate.java:2863) ~[spring-data-mongodb-3.0.0.RELEASE.jar:3.0.0.RELEASE]
+	at org.springframework.data.mongodb.core.MongoTemplate.execute(MongoTemplate.java:541) ~[spring-data-mongodb-3.0.0.RELEASE.jar:3.0.0.RELEASE]
+	at org.springframework.data.mongodb.core.MongoTemplate.collectionExists(MongoTemplate.java:684) ~[spring-data-mongodb-3.0.0.RELEASE.jar:3.0.0.RELEASE]
+	at com.cr.cag.CagMongo.startup(CagMongo.java:46) ~[classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_91]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_91]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_91]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_91]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323) ~[spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226) [spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321) [spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) [spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:895) [spring-beans-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878) [spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) [spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at com.cr.cag.CagApplication.main(CagApplication.java:11) [classes/:?]
+Caused by: com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting to connect. Client view of cluster state is {type=UNKNOWN, servers=[{address=192.168.169.129:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.SocketTimeoutException: connect timed out}}]
+	at com.mongodb.internal.connection.BaseCluster.getDescription(BaseCluster.java:177) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SingleServerCluster.getDescription(SingleServerCluster.java:41) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.client.internal.MongoClientDelegate.getConnectedClusterDescription(MongoClientDelegate.java:147) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at com.mongodb.client.internal.MongoClientDelegate.createClientSession(MongoClientDelegate.java:98) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at com.mongodb.client.internal.MongoClientDelegate$DelegateOperationExecutor.getClientSession(MongoClientDelegate.java:278) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at com.mongodb.client.internal.MongoClientDelegate$DelegateOperationExecutor.execute(MongoClientDelegate.java:182) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at com.mongodb.client.internal.MongoIterableImpl.execute(MongoIterableImpl.java:135) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at com.mongodb.client.internal.MongoIterableImpl.iterator(MongoIterableImpl.java:92) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at com.mongodb.client.internal.MappingIterable.iterator(MappingIterable.java:39) ~[mongodb-driver-sync-4.0.3.jar:?]
+	at org.springframework.data.mongodb.core.MongoTemplate.lambda$collectionExists$9(MongoTemplate.java:686) ~[spring-data-mongodb-3.0.0.RELEASE.jar:3.0.0.RELEASE]
+	at org.springframework.data.mongodb.core.MongoTemplate.execute(MongoTemplate.java:539) ~[spring-data-mongodb-3.0.0.RELEASE.jar:3.0.0.RELEASE]
+	... 28 more
+
+2020-07-02 14:50:22.632  INFO 3444 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 3444 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:50:22.637  INFO 3444 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:50:23.228  INFO 3444 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:50:23.242  INFO 3444 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:50:23.865  INFO 3444 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:50:23.885  INFO 3444 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:50:23.886  INFO 3444 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:50:23.886  INFO 3444 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:50:23.968  INFO 3444 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:50:23.969  INFO 3444 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 1306 ms
+2020-07-02 14:50:24.088  INFO 3444 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:50:24.208  INFO 3444 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:50:24.214  INFO 3444 --- [           main] o.m.d.cluster                            : Cluster description not yet available. Waiting for 30000 ms before timing out
+2020-07-02 14:50:34.104  INFO 3444 --- [8.169.129:27017] o.m.d.cluster                            : Exception in monitor thread while connecting to server 192.168.169.129:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) [mongodb-driver-core-4.0.3.jar:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_91]
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_91]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_91]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_91]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_91]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_91]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:63) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.0.3.jar:?]
+	... 3 more
+
+2020-07-02 14:50:41.399  INFO 10872 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 10872 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:50:41.407  INFO 10872 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:50:41.793  INFO 10872 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:50:41.804  INFO 10872 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:50:42.058  INFO 10872 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:50:42.063  INFO 10872 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:50:42.063  INFO 10872 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:50:42.063  INFO 10872 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:50:42.105  INFO 10872 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:50:42.106  INFO 10872 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 672 ms
+2020-07-02 14:50:42.183  INFO 10872 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:50:42.311  INFO 10872 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:50:42.319  INFO 10872 --- [           main] o.m.d.cluster                            : Cluster description not yet available. Waiting for 30000 ms before timing out
+2020-07-02 14:50:52.200  INFO 10872 --- [8.169.129:27017] o.m.d.cluster                            : Exception in monitor thread while connecting to server 192.168.169.129:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) [mongodb-driver-core-4.0.3.jar:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_91]
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_91]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_91]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_91]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_91]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_91]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:63) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.0.3.jar:?]
+	... 3 more
+
+2020-07-02 14:51:16.585  INFO 10508 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 10508 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:51:16.592  INFO 10508 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:51:16.972  INFO 10508 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:51:16.984  INFO 10508 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:51:17.253  INFO 10508 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:51:17.258  INFO 10508 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:51:17.258  INFO 10508 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:51:17.258  INFO 10508 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:51:17.302  INFO 10508 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:51:17.302  INFO 10508 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 674 ms
+2020-07-02 14:51:17.382  INFO 10508 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:51:17.498  INFO 10508 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:51:17.504  INFO 10508 --- [           main] o.m.d.cluster                            : Cluster description not yet available. Waiting for 30000 ms before timing out
+2020-07-02 14:51:27.400  INFO 10508 --- [8.169.129:27017] o.m.d.cluster                            : Exception in monitor thread while connecting to server 192.168.169.129:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:127) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) [mongodb-driver-core-4.0.3.jar:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_91]
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_91]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_91]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_91]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_91]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_91]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_91]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:63) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.0.3.jar:?]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.0.3.jar:?]
+	... 3 more
+
+2020-07-02 14:51:38.539  INFO 10508 --- [8.169.129:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:3, serverValue:843}] to 192.168.169.129:27017
+2020-07-02 14:51:38.543  INFO 10508 --- [8.169.129:27017] o.m.d.cluster                            : Monitor thread successfully connected to server with description ServerDescription{address=192.168.169.129:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=2271985}
+2020-07-02 14:51:39.038  INFO 10508 --- [           main] o.m.d.connection                         : Opened connection [connectionId{localValue:4, serverValue:844}] to 192.168.169.129:27017
+2020-07-02 14:51:39.064  INFO 10508 --- [           main] c.c.c.CagMongo                           : cag-mongo ready
+2020-07-02 14:51:39.252  INFO 10508 --- [ntLoopGroup-2-1] c.c.c.CagServer                          : cag-server(/0.0.0.0:9999) ready: {boss: 2, worker:16, allocator: PooledByteBufAllocator(directByDefault: true)}
+2020-07-02 14:51:39.261  INFO 10508 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'scheduler'
+2020-07-02 14:51:39.518  INFO 10508 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:51:39.527  INFO 10508 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 21339 (http) with context path ''
+2020-07-02 14:51:39.536  INFO 10508 --- [           main] c.c.c.CagApplication                     : Started CagApplication in 23.347 seconds (JVM running for 23.941)
+2020-07-02 14:52:02.580  INFO 10464 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 10464 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:52:02.587  INFO 10464 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:52:02.936  INFO 10464 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:52:02.948  INFO 10464 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:52:03.196  INFO 10464 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:52:03.201  INFO 10464 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:52:03.201  INFO 10464 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:52:03.201  INFO 10464 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:52:03.244  INFO 10464 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:52:03.245  INFO 10464 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 631 ms
+2020-07-02 14:52:03.321  INFO 10464 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:52:03.347  INFO 10464 --- [8.169.129:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:1, serverValue:847}] to 192.168.169.129:27017
+2020-07-02 14:52:03.349  INFO 10464 --- [8.169.129:27017] o.m.d.cluster                            : Monitor thread successfully connected to server with description ServerDescription{address=192.168.169.129:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=806344}
+2020-07-02 14:52:03.449  INFO 10464 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:52:03.622  INFO 10464 --- [           main] o.m.d.connection                         : Opened connection [connectionId{localValue:2, serverValue:848}] to 192.168.169.129:27017
+2020-07-02 14:52:03.632  INFO 10464 --- [           main] c.c.c.CagMongo                           : cag-mongo ready
+2020-07-02 14:52:03.758  INFO 10464 --- [ntLoopGroup-2-1] c.c.c.CagServer                          : cag-server(/0.0.0.0:9999) ready: {boss: 2, worker:16, allocator: PooledByteBufAllocator(directByDefault: true)}
+2020-07-02 14:52:03.763  INFO 10464 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'scheduler'
+2020-07-02 14:52:03.974  INFO 10464 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:52:03.982  INFO 10464 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 21339 (http) with context path ''
+2020-07-02 14:52:03.990  INFO 10464 --- [           main] c.c.c.CagApplication                     : Started CagApplication in 1.654 seconds (JVM running for 2.208)
+2020-07-02 14:53:03.410  INFO 10464 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 14:54:04.013  INFO 10464 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 14:54:27.233 ERROR 11072 --- [           main] o.s.b.SpringApplication                  : Application run failed
+
+org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'logging.level.appender.file' to org.springframework.boot.logging.LogLevel
+	at org.springframework.boot.context.properties.bind.Binder.handleBindError(Binder.java:363) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:323) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.lambda$null$1(Binder.java:411) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.withSource(Binder.java:542) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.access$800(Binder.java:512) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindAggregate$2(Binder.java:412) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.AggregateElementBinder.bind(AggregateElementBinder.java:39) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.MapBinder$EntryBinder.lambda$bindEntries$0(MapBinder.java:157) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at java.util.HashMap.computeIfAbsent(HashMap.java:1118) ~[?:1.8.0_91]
+	at org.springframework.boot.context.properties.bind.MapBinder$EntryBinder.bindEntries(MapBinder.java:157) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.MapBinder.bindAggregate(MapBinder.java:68) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.AggregateBinder.bind(AggregateBinder.java:56) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindAggregate$3(Binder.java:414) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.withIncreasedDepth(Binder.java:571) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.access$100(Binder.java:512) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindAggregate(Binder.java:414) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:375) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:319) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:308) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:238) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:212) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.setLogLevels(LoggingApplicationListener.java:364) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeFinalLoggingLevels(LoggingApplicationListener.java:331) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:282) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at com.cr.cag.CagApplication.main(CagApplication.java:11) [classes/:?]
+Caused by: org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.lang.String] to type [org.springframework.boot.logging.LogLevel] for value 'fileName=D:/log/${artifactId}.log'; nested exception is java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.fileName=D:/log/${artifactId}.log
+	at org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:47) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.core.convert.support.GenericConversionService.convert(GenericConversionService.java:191) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter$CompositeConversionService.convert(BindConverter.java:170) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:96) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:88) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindProperty(Binder.java:434) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:379) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:319) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	... 35 more
+Caused by: java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.fileName=D:/log/${artifactId}.log
+	at org.springframework.boot.convert.LenientObjectToEnumConverterFactory$LenientToEnumConverter.findEnum(LenientObjectToEnumConverterFactory.java:93) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.convert.LenientObjectToEnumConverterFactory$LenientToEnumConverter.convert(LenientObjectToEnumConverterFactory.java:80) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.convert.LenientObjectToEnumConverterFactory$LenientToEnumConverter.convert(LenientObjectToEnumConverterFactory.java:61) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.core.convert.support.GenericConversionService$ConverterFactoryAdapter.convert(GenericConversionService.java:436) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:41) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.core.convert.support.GenericConversionService.convert(GenericConversionService.java:191) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter$CompositeConversionService.convert(BindConverter.java:170) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:96) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:88) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindProperty(Binder.java:434) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:379) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:319) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	... 35 more
+
+2020-07-02 14:54:41.148 ERROR 11052 --- [           main] o.s.b.SpringApplication                  : Application run failed
+
+org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'logging.level.appender.file' to org.springframework.boot.logging.LogLevel
+	at org.springframework.boot.context.properties.bind.Binder.handleBindError(Binder.java:363) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:323) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.lambda$null$1(Binder.java:411) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.withSource(Binder.java:542) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.access$800(Binder.java:512) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindAggregate$2(Binder.java:412) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.AggregateElementBinder.bind(AggregateElementBinder.java:39) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.MapBinder$EntryBinder.lambda$bindEntries$0(MapBinder.java:157) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at java.util.HashMap.computeIfAbsent(HashMap.java:1118) ~[?:1.8.0_91]
+	at org.springframework.boot.context.properties.bind.MapBinder$EntryBinder.bindEntries(MapBinder.java:157) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.MapBinder.bindAggregate(MapBinder.java:68) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.AggregateBinder.bind(AggregateBinder.java:56) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindAggregate$3(Binder.java:414) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.withIncreasedDepth(Binder.java:571) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder$Context.access$100(Binder.java:512) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindAggregate(Binder.java:414) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:375) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:319) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:308) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:238) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:212) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.setLogLevels(LoggingApplicationListener.java:364) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeFinalLoggingLevels(LoggingApplicationListener.java:331) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:282) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:239) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:216) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127) ~[spring-context-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:80) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:345) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at com.cr.cag.CagApplication.main(CagApplication.java:11) [classes/:?]
+Caused by: org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.lang.String] to type [org.springframework.boot.logging.LogLevel] for value 'fileName=D:/log/cag.log'; nested exception is java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.fileName=D:/log/cag.log
+	at org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:47) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.core.convert.support.GenericConversionService.convert(GenericConversionService.java:191) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter$CompositeConversionService.convert(BindConverter.java:170) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:96) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:88) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindProperty(Binder.java:434) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:379) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:319) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	... 35 more
+Caused by: java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.fileName=D:/log/cag.log
+	at org.springframework.boot.convert.LenientObjectToEnumConverterFactory$LenientToEnumConverter.findEnum(LenientObjectToEnumConverterFactory.java:93) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.convert.LenientObjectToEnumConverterFactory$LenientToEnumConverter.convert(LenientObjectToEnumConverterFactory.java:80) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.convert.LenientObjectToEnumConverterFactory$LenientToEnumConverter.convert(LenientObjectToEnumConverterFactory.java:61) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.core.convert.support.GenericConversionService$ConverterFactoryAdapter.convert(GenericConversionService.java:436) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:41) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.core.convert.support.GenericConversionService.convert(GenericConversionService.java:191) ~[spring-core-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter$CompositeConversionService.convert(BindConverter.java:170) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:96) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.BindConverter.convert(BindConverter.java:88) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindProperty(Binder.java:434) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:379) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:319) ~[spring-boot-2.3.0.RELEASE.jar:2.3.0.RELEASE]
+	... 35 more
+
+2020-07-02 14:56:04.769  INFO 10876 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 10876 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:56:04.775  INFO 10876 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:56:05.123  INFO 10876 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:56:05.133  INFO 10876 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:56:05.374  INFO 10876 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:56:05.379  INFO 10876 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:56:05.379  INFO 10876 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:56:05.380  INFO 10876 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:56:05.423  INFO 10876 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:56:05.423  INFO 10876 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 625 ms
+2020-07-02 14:56:05.508  INFO 10876 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:56:05.552  INFO 10876 --- [8.169.129:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:1, serverValue:849}] to 192.168.169.129:27017
+2020-07-02 14:56:05.553  INFO 10876 --- [8.169.129:27017] o.m.d.cluster                            : Monitor thread successfully connected to server with description ServerDescription{address=192.168.169.129:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=884846}
+2020-07-02 14:56:05.640  INFO 10876 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:56:05.805  INFO 10876 --- [           main] o.m.d.connection                         : Opened connection [connectionId{localValue:2, serverValue:850}] to 192.168.169.129:27017
+2020-07-02 14:56:05.813  INFO 10876 --- [           main] c.c.c.CagMongo                           : cag-mongo ready
+2020-07-02 14:56:05.924  INFO 10876 --- [ntLoopGroup-2-1] c.c.c.CagServer                          : cag-server(/0.0.0.0:9999) ready: {boss: 2, worker:16, allocator: PooledByteBufAllocator(directByDefault: true)}
+2020-07-02 14:56:05.929  INFO 10876 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'scheduler'
+2020-07-02 14:56:06.098  INFO 10876 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:56:06.105  INFO 10876 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 21339 (http) with context path ''
+2020-07-02 14:56:06.112  INFO 10876 --- [           main] c.c.c.CagApplication                     : Started CagApplication in 1.594 seconds (JVM running for 2.16)
+2020-07-02 14:56:38.934  INFO 10436 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 10436 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 14:56:38.940  INFO 10436 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 14:56:39.280  INFO 10436 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 14:56:39.291  INFO 10436 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 0 MongoDB repository interfaces.
+2020-07-02 14:56:39.543  INFO 10436 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 14:56:39.547  INFO 10436 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:56:39.548  INFO 10436 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 14:56:39.548  INFO 10436 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 14:56:39.592  INFO 10436 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 14:56:39.592  INFO 10436 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 626 ms
+2020-07-02 14:56:39.673  INFO 10436 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 14:56:39.706  INFO 10436 --- [8.169.129:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:1, serverValue:851}] to 192.168.169.129:27017
+2020-07-02 14:56:39.707  INFO 10436 --- [8.169.129:27017] o.m.d.cluster                            : Monitor thread successfully connected to server with description ServerDescription{address=192.168.169.129:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=918976}
+2020-07-02 14:56:39.794  INFO 10436 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 14:56:39.983  INFO 10436 --- [           main] o.m.d.connection                         : Opened connection [connectionId{localValue:2, serverValue:852}] to 192.168.169.129:27017
+2020-07-02 14:56:39.992  INFO 10436 --- [           main] c.c.c.CagMongo                           : cag-mongo ready
+2020-07-02 14:56:40.107  INFO 10436 --- [ntLoopGroup-2-1] c.c.c.CagServer                          : cag-server(/0.0.0.0:9999) ready: {boss: 2, worker:16, allocator: PooledByteBufAllocator(directByDefault: true)}
+2020-07-02 14:56:40.112  INFO 10436 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'scheduler'
+2020-07-02 14:56:40.277  INFO 10436 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 14:56:40.284  INFO 10436 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 21339 (http) with context path ''
+2020-07-02 14:56:40.291  INFO 10436 --- [           main] c.c.c.CagApplication                     : Started CagApplication in 1.604 seconds (JVM running for 2.27)
+2020-07-02 14:57:00.003  INFO 10436 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 15:00:45.748  INFO 10544 --- [           main] c.c.c.CagApplication                     : Starting CagApplication on PC-9 with PID 10544 (D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1\target\classes started by Administrator in D:\development\IntelliJ IDEA 2016.2.5\workspaces\cag1)
+2020-07-02 15:00:45.756  INFO 10544 --- [           main] c.c.c.CagApplication                     : No active profile set, falling back to default profiles: default
+2020-07-02 15:00:46.280  INFO 10544 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-07-02 15:00:46.294  INFO 10544 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 0 MongoDB repository interfaces.
+2020-07-02 15:00:46.606  INFO 10544 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 21339 (http)
+2020-07-02 15:00:46.612  INFO 10544 --- [           main] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 15:00:46.613  INFO 10544 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-07-02 15:00:46.613  INFO 10544 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-02 15:00:46.670  INFO 10544 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-07-02 15:00:46.670  INFO 10544 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 875 ms
+2020-07-02 15:00:46.779  INFO 10544 --- [           main] o.m.d.cluster                            : Cluster created with settings {hosts=[192.168.169.129:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2020-07-02 15:00:46.815  INFO 10544 --- [8.169.129:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:1, serverValue:855}] to 192.168.169.129:27017
+2020-07-02 15:00:46.818  INFO 10544 --- [8.169.129:27017] o.m.d.cluster                            : Monitor thread successfully connected to server with description ServerDescription{address=192.168.169.129:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=1480431}
+2020-07-02 15:00:46.922  INFO 10544 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'executor'
+2020-07-02 15:00:47.148  INFO 10544 --- [           main] o.m.d.connection                         : Opened connection [connectionId{localValue:2, serverValue:856}] to 192.168.169.129:27017
+2020-07-02 15:00:47.156  INFO 10544 --- [           main] c.c.c.CagMongo                           : cag-mongo ready
+2020-07-02 15:00:47.275  INFO 10544 --- [ntLoopGroup-2-1] c.c.c.CagServer                          : cag-server(/0.0.0.0:9999) ready: {boss: 2, worker:16, allocator: PooledByteBufAllocator(directByDefault: true)}
+2020-07-02 15:00:47.281  INFO 10544 --- [           main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'scheduler'
+2020-07-02 15:00:47.500  INFO 10544 --- [           main] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-0.0.0.0-21339"]
+2020-07-02 15:00:47.507  INFO 10544 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 21339 (http) with context path ''
+2020-07-02 15:00:47.515  INFO 10544 --- [           main] c.c.c.CagApplication                     : Started CagApplication in 2.335 seconds (JVM running for 3.138)
+2020-07-02 15:01:00.889  INFO 10544 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 15:02:00.005  INFO 10544 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 15:03:00.807  INFO 10544 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 15:04:03.812  INFO 10544 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 15:05:00.747  INFO 10544 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}
+2020-07-02 15:06:03.800  INFO 10544 --- [cas-scheduler-1] c.c.c.CagReporter                        : cag-report: {opened: 0, closed: 0, active: 0, read: 0, saved: 0, failure: 0}

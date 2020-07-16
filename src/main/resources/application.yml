@@ -1,0 +1,48 @@
+logging:
+  level:
+    com.cr: info
+
+spring:
+  data:
+    mongodb:
+      host: 192.168.11.131
+      port: 27017
+      database: OrgAuditDataDB
+      username: user
+      password: cauditms1qaz
+
+cag:
+  address: 0.0.0.0
+  port: 9999
+#  TCP连接线程数
+  ntBosses: 2
+#  数据接收处理线程数  0：默认CPU核心数*2
+  ntWorkers: 0
+# Netty分配的缓冲区（单个连接）
+  ntRcvBuf: 64KB
+  ntIdleTime: 300s
+  ntIgnoreEx: [Connection reset by peer,远程主机强迫关闭了一个现有的连接。]
+#Socket连接较多时，可在soBackLog中存放的连接数
+  soBackLog: 1024
+#单个Socket连接缓冲区
+  soRcvBuf: 256KB
+  dcBufTime: 10s
+  dcMaxSize: 200MB
+  dcCharset: UTF-8
+#  是否删除text字段数据 true:删除
+  dcIgnoreText: true
+#  写入MongoDB线程数
+  mgWorkers: 10
+#  写入MongoDB阈值（当队列中的数据达到此值时开始写入数据库）
+  mgBatch: 20MB
+  mgDelay: 20s
+#  MongoDB保存mgClean时间内的数据 H为小时 d为天
+  mgClean: 2d
+  mgCollection: COL_HTTPS_ORGINFO
+
+server:
+  address: 0.0.0.0
+  port: 21339
+  tomcat:
+    threads:
+      max: 1

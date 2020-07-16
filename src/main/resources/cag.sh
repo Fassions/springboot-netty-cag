@@ -1,0 +1,1 @@
+nohup java -Xms2g -Xmx2g -XX:MaxDirectMemorySize=4g -XX:+UseG1GC -Dio.netty.leakDetectionLevel=disabled -jar cr-cag-1.1.0.RELEASE.jar >/dev/null 2>&1 &
